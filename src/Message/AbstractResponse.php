@@ -54,4 +54,12 @@ abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
             return (count($errorParts) == 2) ? $errorParts[0] : null;
         }
     }
+    
+    public function getAuthorizationCode()
+    {
+        if ($this->isSuccessful() && !empty($this->data['APPCODE'])) {
+            return $this->data['APPCODE'];
+        }
+        return 0;
+    }
 }
